@@ -37,6 +37,10 @@ public class TicTacToe {
         return board[index] == ' ';
     }
 
+    public static void makeMove(char[] board, int index, char letter){
+        boolean spaceFree = isSpaceFree(board, index);
+        if (spaceFree) board[index] = letter;
+    }
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe Game");
         Scanner userInput = new Scanner(System.in);
@@ -45,5 +49,7 @@ public class TicTacToe {
         char computerLetter = (userLetter == 'X') ? 'O' : 'X';
         showBoard(board);
         int userMove = getUserMove(board, userInput);
+        makeMove(board, userMove, userLetter);
+        showBoard(board);
     }
 }
