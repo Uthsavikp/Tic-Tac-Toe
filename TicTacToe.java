@@ -2,6 +2,10 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class TicTacToe {
+    public static final int HEAD = 0;
+    public static final int TAIL = 1;
+    public static enum Player {USER, COMPUTER};
+
     public static char[] createBoard() {
         char[] board = new char[10];
         for (int i = 0; i < board.length; i++) {
@@ -41,6 +45,10 @@ public class TicTacToe {
         boolean spaceFree = isSpaceFree(board, index);
         if (spaceFree) board[index] = letter;
     }
+    public static Player getWhoStartsFirst(){
+        int toss = (int) (Math.random() * 10) % 2;
+        return (toss == HEAD) ? Player.USER : Player.COMPUTER;
+    }
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe Game");
         Scanner userInput = new Scanner(System.in);
@@ -51,5 +59,6 @@ public class TicTacToe {
         int userMove = getUserMove(board, userInput);
         makeMove(board, userMove, userLetter);
         showBoard(board);
+        Player player = getWhoStartsFirst();
     }
 }
